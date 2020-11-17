@@ -6,7 +6,8 @@ enum class ConfigurationParameter(val configurationKey: String) {
     HOSTNAME("sfcc.hostname"),
     WEBDAV_USERNAME("sfcc.webdav.username"),
     WEBDAV_PASSWORD("sfcc.webdav.password"),
-    PUBLICATION_LIBRARY("sfcc.publication.library")
+    PUBLICATION_LIBRARY("sfcc.publication.library"),
+    MAX_CONCURRENT_REQUESTS("sfcc.publication.maxConcurrentRequests")
 }
 
 val configuration: Properties by lazy {
