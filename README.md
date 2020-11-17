@@ -4,7 +4,7 @@ This repository contains a FirstSpirit module that implements a new approach to 
 It was demonstrated during e-Spirit's Devcon in November 2020.
 
 ## Setup
-1. Add the parameters `artifactory_hosting_username` and `artifactory_password` to your `~/.gradle/gradle.properties` file
+1. Add the parameters `artifactory_hosting_username` and `artifactory_hosting_password` to your `~/.gradle/gradle.properties` file
 2. Configure your Salesforce Commerce Cloud instance in `src/main/resources/de/espirit/sfcc/publication/configuration.properties`
 3. Build the module using `./gradlew build`
 4. Install the module on your FirstSpirit server
