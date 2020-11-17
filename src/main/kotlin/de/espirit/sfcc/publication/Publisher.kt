@@ -6,9 +6,7 @@ import java.util.concurrent.CompletableFuture
 
 class Publisher(private val renderingAgent: RenderingAgent, private val publisher: SfccObjectPublisher) {
 
-    fun publish(pageRef: PageRef): CompletableFuture<Void> = publishAsync(pageRef)
-
-    private fun publishAsync(pageRef: PageRef): CompletableFuture<Void> {
+    fun publish(pageRef: PageRef): CompletableFuture<Void> {
         val futures = mutableSetOf<CompletableFuture<Void>>()
         val sfccObjectFactory = SfccObjectFactory(renderingAgent) { media, language, resolution ->
             val mediaFuture = publisher.publishMediaFile(media, language, resolution)
