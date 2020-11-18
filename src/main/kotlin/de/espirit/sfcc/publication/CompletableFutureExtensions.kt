@@ -18,7 +18,4 @@ internal val executor: Executor by lazy {
 fun <T, U> CompletableFuture<T>.thenComposeWithSharedExecutor(function: Function<in T?, out CompletionStage<U>>): CompletableFuture<U> =
         this.thenComposeAsync(function, executor)
 
-fun <T, U> CompletableFuture<T>.thenApplyWithSharedExecutor(function: Function<in T, out U>): CompletableFuture<U> =
-        this.thenApplyAsync(function, executor)
-
 fun runAsyncWithSharedExecutor(runnable: Runnable): CompletableFuture<Void> = CompletableFuture.runAsync(runnable, executor)

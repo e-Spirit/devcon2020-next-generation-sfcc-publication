@@ -7,6 +7,8 @@ import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
+import java.security.AccessController
+import java.security.PrivilegedAction
 import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Future
@@ -34,8 +36,8 @@ class DataApiClient(private val httpClient: HttpClient, private val mapper: Obje
                 .build()
 
         return httpClient.sendAsync(accessTokenRequest, HttpResponse.BodyHandlers.ofString())
-                .thenApplyWithSharedExecutor { it.body() }
-                .thenApplyWithSharedExecutor { mapper.readValue(it, AuthenticationResponse::class.java) }
+                .thenApply { it.body() }
+                .thenApply { AccessController.doPrivileged(PrivilegedAction { mapper.readValue(it, AuthenticationResponse::class.java) }) }
     }
 
     fun putContentAsset(parameter: ContentAssetRequestParameter): CompletableFuture<Void> =
